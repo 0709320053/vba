@@ -1,0 +1,323 @@
+﻿Option Explicit
+Public k As String, i, j, s, D As Integer
+Dim a(1 To 50), b(1 To 10), sum1, sum2, sum3
+Sub aver()
+    sum3 = 0
+        For i = 3 To 17
+        sum1 = 0
+            For j = 2 To 13
+            sum1 = sum1 + Cells(i, j)
+            Next j
+            a(i) = WorksheetFunction.Round(sum1 / 12, 2)
+            Cells(i, j) = a(i)
+            sum3 = sum1 + sum3
+        Next i
+        
+        For i = 20 To D + 4
+        sum2 = 0
+            For j = 2 To 13
+            sum2 = sum2 + Cells(i, j)
+            Next j
+            a(i) = WorksheetFunction.Round(sum2 / 12, 2)
+            Cells(i, j) = a(i)
+            sum3 = sum2 + sum3
+        Next i
+        
+End Sub
+Sub taizhang()
+    k = Format(Date, "yyyy年m月")
+    D = DateDiff("d", Date, DateSerial(2017, 1, 1)) + Day(Date) - 1
+'Call shuju
+        Worksheets.Add Count:=7
+    
+'前四个表
+    Worksheets(1).Name = "" & k & "份进口COD日报"
+    Union(Worksheets(1).Range("A1"), Worksheets(1).Range("A18")).Value = "兴安盟城镇污水处理厂进口COD在线数据表"
+    Union(Cells(2, 14), Cells(19, 14)) = "日平均值"
+    Union(Cells(2, 15), Cells(19, 15)) = "备注"
+    
+    Worksheets(2).Name = "" & k & "份进口氨氮日报"
+    Union(Worksheets(2).Range("A1"), Worksheets(2).Range("A18")).Value = "兴安盟城镇污水处理厂进口氨氮在线数据表"
+    Union(Worksheets(2).Cells(2, 14), Worksheets(2).Cells(19, 14)) = "日平均值"
+    Union(Worksheets(2).Cells(2, 15), Worksheets(2).Cells(19, 15)) = "备注"
+
+    Worksheets(3).Name = "" & k & "份出口COD日报"
+    Union(Worksheets(3).Range("A1"), Worksheets(3).Range("A18")).Value = "兴安盟城镇污水处理厂出口COD在线数据表"
+    Union(Worksheets(3).Cells(2, 14), Worksheets(3).Cells(19, 14)) = "日平均值"
+    Union(Worksheets(3).Cells(2, 15), Worksheets(3).Cells(19, 15)) = "备注"
+
+    Worksheets(4).Name = "" & k & "份出口氨氮日报"
+    Union(Worksheets(4).Range("A1"), Worksheets(4).Range("A18")).Value = "兴安盟城镇污水处理厂出口氨氮在线数据表"
+    Union(Worksheets(4).Cells(2, 14), Worksheets(4).Cells(19, 14)) = "日平均值"
+    Union(Worksheets(4).Cells(2, 15), Worksheets(4).Cells(19, 15)) = "备注"
+'第五个表
+    Worksheets(5).Name = "污水处理厂污水处理流量统计表"
+    Worksheets(5).Range("A1").Value = "污水处理厂污水处理流量统计表(" & k & ")"
+    Worksheets(5).Range("A2").Value = "日期"
+    Worksheets(5).Range("B2").Value = "前日流量计数（万m3）"
+    Worksheets(5).Range("C2").Value = "当日流量计数（万m3）"
+    Worksheets(5).Range("D2").Value = "日流量（万m3）"
+    Worksheets(5).Range("A" & D + 3&).Value = "月合计"
+'第六个表
+    Worksheets(6).Name = "日常运行情况月报"
+    Worksheets(6).Range("A1").Value = "污水处理厂日常运行情况月报表"
+    Worksheets(6).Range("A2").Value = k
+    Worksheets(6).Range("A3").Value = "日期"
+    Worksheets(6).Range("B3").Value = "干泥产生量(吨)"
+    Worksheets(6).Range("C3").Value = "絮凝剂用量(千克)"
+    Worksheets(6).Range("D3").Value = "本日流量计显示值(万吨)"
+    Worksheets(6).Range("E3").Value = "日处理污水量(万吨)"
+    Worksheets(6).Range("F3").Value = "本日COD在线监测平均浓度(mg/L)"
+    Worksheets(6).Range("F4").Value = "进口"
+    Worksheets(6).Range("G4").Value = "出口"
+    Worksheets(6).Range("H3").Value = "本日MH4-N在线监测平均浓度(mg/L)"
+    Worksheets(6).Range("H4").Value = "进口"
+    Worksheets(6).Range("I4").Value = "出口"
+    Worksheets(6).Range("A" & D + 5&).Value = "当月均值"
+    Worksheets(6).Range("A" & D + 6&).Value = "当月合计"
+'第七个表
+    Worksheets(7).Name = "污泥统计表"
+    Worksheets(7).Range("A1").Value = "污泥间运行统计表"
+    Worksheets(7).Range("A2").Value = "絮凝剂型号"
+    Worksheets(7).Range("B2").Value = "HG8035"
+    Worksheets(7).Range("C2").Value = "配置浓度"
+    Worksheets(7).Range("D2").Value = "'2.00"
+    Worksheets(7).Range("A3").Value = "时间"
+    Worksheets(7).Range("C3").Value = "干泥产生量(吨)"
+    Worksheets(7).Range("D3").Value = "絮凝剂用量(kg)"
+    Worksheets(7).Range("A" & D + 4&).Value = "总计"
+    Worksheets(7).Range("A" & D + 5).Value = "注：已运至绿洁垃圾处理厂 蒙F27382（照片附后）"
+'第八个表
+    Worksheets(Worksheets.Count).Name = "" & k & "月报汇总表"
+    Worksheets(Worksheets.Count).Range("A1").Value = "兴安盟城镇污水处理厂" & k & "报汇总表"
+    With Worksheets(Worksheets.Count)
+        .Range("A2").Value = "月份"
+        .Range("B2").Value = "平均日处理水量(万吨/日)"
+        .Range("C2").Value = "实际运行天数"
+        .Range("D2").Value = "月处理总水量(万吨)"
+        
+        .Range("E2").Value = "COD"
+        .Range("E3").Value = "平均进水浓度(mg/L)"
+        .Range("F3").Value = "平均出水浓度(mg/L)"
+        
+        .Range("G2").Value = "NH4-N"
+        .Range("G3").Value = "平均进水浓度(mg/L)"
+        .Range("H3").Value = "平均出水浓度(mg/L)"
+        
+        .Range("I2").Value = "耗电情况"
+        .Range("I3").Value = "耗电量(KWH)"
+        .Range("j3").Value = "吨水耗电量(吨)"
+        
+        .Range("k2").Value = "污泥产生情况"
+        .Range("k3").Value = "干泥总量(吨)"
+        .Range("L3").Value = "万吨水产泥量(吨)"
+        
+        .Range("M2").Value = "絮凝剂用量(kg)"
+        .Range("N2").Value = "COD消减量(吨)"
+        .Range("O2").Value = "NM4-N消减量(吨)"
+        .Range("P2").Value = "备注"
+    End With
+    Call yangshi
+End Sub
+Sub yangshi()
+    k = Format(Date, "yyyy年m月")
+    D = DateDiff("d", Date, DateSerial(2017, 1, 1)) + Day(Date) - 1
+    For i = 1 To 4
+        Worksheets(i).Select
+            With Union(Range("A1:O1"), Range("A18:O18"))
+            .Merge
+            .HorizontalAlignment = xlCenter
+            .RowHeight = 100
+            .ColumnWidth = 7.6
+            .Font.FontStyle = "Bold"
+            .Font.Size = 30
+            End With
+            
+            With Union(Range("A2:O17"), Range("A19:O" & D + 4))
+            .Select
+            Selection.Borders.LineStyle = xlContinuous
+            Selection.Font.Name = "宋体"
+            Selection.HorizontalAlignment = xlCenter
+        Selection.RowHeight = 29
+            End With
+    Next i
+'第五个表
+    Worksheets(5).Select
+    With Worksheets(5)
+        .Range("A1:D1").Merge
+        .Range("B" & D + 3 & ":D" & D + 3).Merge
+        .Range("A1:D1").RowHeight = 100
+        .Range("A1:D1").ColumnWidth = 20
+        .Range("A1:D1").Font.Size = 20
+        .Range("A2:D1").Font.FontStyle = "bold"
+        .Range("A1:D2").Font.Name = "宋体"
+        .Range("A1:D" & D + 2).HorizontalAlignment = xlCenter
+        .Range("A" & D + 3).HorizontalAlignment = xlCenter
+        .Range("A2:D" & D + 3).Borders.LineStyle = xlContinuous
+    End With
+    Range("B2").Select
+    Selection.Characters(10, 1).Font.Superscript = True
+    Range("C2").Select
+    Selection.Characters(10, 1).Font.Superscript = True
+    Range("D2").Select
+    Selection.Characters(7, 1).Font.Superscript = True
+'第六个表
+    Worksheets(6).Select
+    With Worksheets(6)
+        .Range("A1:I1").Merge
+        .Range("A2:I2").Merge
+        .Range("A3:A4").Merge
+        .Range("B3:B4").Merge
+        .Range("C3:C4").Merge
+        .Range("D3:D4").Merge
+        .Range("E3:E4").Merge
+        .Range("F3:G3").Merge
+        .Range("H3:I3").Merge
+        .Range("A1:I1").RowHeight = 100
+    Union(Range("A3:A4"), Range("B3:B4"), Range("C3:C4"), _
+    Range("D3:D4"), Range("E3:E4"), Range("F3:G3"), Range("H3:I3")).RowHeight = 40.5
+    Range("A1:I1").RowHeight = 70
+        .Range("A1:I1").Font.Size = 30
+        .Range("A1:I1").Font.FontStyle = "bold"
+        .Range("A1:I1").Font.Name = "宋体"
+    Union(Range("A1:I1"), Range("A3:I4")).HorizontalAlignment = xlCenter
+        .Range("A3:I" & D + 6).Borders.LineStyle = xlContinuous
+    Range("B3").WrapText = True
+    Range("C3").WrapText = True
+    Range("D3").WrapText = True
+    Range("E3").WrapText = True
+    Range("F3").WrapText = True
+    Range("H3").WrapText = True
+    End With
+'第七个表
+    Worksheets(7).Select
+    With Worksheets(7)
+        .Range("A1:D1").ColumnWidth = 15
+        .Range("A1:D1").Merge
+        .Range("A3:B3").Merge
+        .Range("A" & D + 4 & ":B" & D + 4).Merge
+        .Range("A" & D + 5 & ":D" & D + 5).Merge
+    For i = 4 To D + 3
+            Range("A" & i & ":B" & i).Merge
+    Next i
+        .Range("A1").RowHeight = 35
+        .Range("A1:D1").Font.Name = "宋体"
+        .Range("A1:D1").Font.FontStyle = "bold"
+        .Range("A1:D" & D + 4).HorizontalAlignment = xlCenter
+        .Range("A2:D" & D + 4).Borders.LineStyle = xlContinuous
+        End With
+
+'第八个表
+    Worksheets(8).Select
+    Union(Range("A2:A3"), Range("C2:C3"), Range("E2:F2"), Range("I2:J2"), Range("M2:M3"), Range("O2:O3")).Merge
+    Union(Range("B2:B3"), Range("D2:D3"), Range("G2:H2"), Range("K2:L2"), Range("N2:N3"), Range("P2:P3")).Merge
+    Range("A1:P1").Merge
+    
+        Range("B2:O3").WrapText = True
+        Range("A1").RowHeight = 50
+        Range("A1").ColumnWidth = 4
+        Range("A1").Font.Name = "宋体"
+        Range("A1").Font.Size = 15
+        Range("A1").Font.FontStyle = "bold"
+        Range("A1").HorizontalAlignment = xlCenter
+        Range("A2:P4").Borders.LineStyle = xlContinuous
+        Range("A2:P4").HorizontalAlignment = xlCenter
+    Call shuju
+   
+End Sub
+Sub shuju()
+     For s = 1 To 4
+        Worksheets(s).Select
+        For j = 2 To 13
+            Union(Cells(2, j), Cells(19, j)) = Format(DateAdd("h", 2 * j - 4, Date), "hh:mm")
+        Next j
+        
+        For i = 3 To 17 Step 1
+            Cells(i, 1) = Format(DateAdd("d", i - 2 - Day(Date), Date), "m月d日")
+        Next i
+        
+        For i = 20 To D + 4
+            Cells(i, 1) = Format(DateAdd("d", i - 4 - Day(Date), Date), "m月d日")
+        Next i
+    Call aver
+    b(s) = WorksheetFunction.Round((sum3 / 12) / D, 2)
+    Next s
+'第五个
+    Worksheets(5).Select
+    sum1 = 0
+    For i = 3 To D + 2
+        Cells(i, 1) = Format(DateAdd("d", i - 2 - Day(Date), Date), "d")
+        Cells(i + 1, 2) = Cells(i, 3)
+        Cells(i, 4) = Cells(i, 3) - Cells(i, 2)
+        sum1 = sum1 + Cells(i, 4)
+    Next i
+    Cells(D + 3, 2) = sum1
+    b(5) = WorksheetFunction.Round(sum1 / D, 2)
+'第六个
+Worksheets(6).Select
+    For i = 5 To D + 4
+        Cells(i, 1) = Format(DateAdd("d", i - 4 - Day(Date), Date), "d")
+    Next i
+        For i = 3 To D + 2
+                Cells(i + 2, 4) = "=污水处理厂污水处理流量统计表!C" & i
+                Cells(i + 2, 5) = "=污水处理厂污水处理流量统计表!D" & i
+                Cells(i + 2, 2) = "=污泥统计表!C" & i + 1
+                Cells(i + 2, 3) = "=污泥统计表!D" & i + 1
+        Next i
+        For i = 3 To 17
+            Cells(i + 2, 6) = "=" & k & "份进口COD日报!N" & i
+            Cells(i + 2, 7) = "=" & k & "份出口COD日报!N" & i
+            Cells(i + 2, 8) = "=" & k & "份进口氨氮日报!N" & i
+            Cells(i + 2, 9) = "=" & k & "份出口氨氮日报!N" & i
+        Next i
+        For i = 20 To D + 4
+            Cells(i, 6) = "=" & k & "份进口COD日报!N" & i
+            Cells(i, 7) = "=" & k & "份出口COD日报!N" & i
+            Cells(i, 8) = "=" & k & "份进口氨氮日报!N" & i
+            Cells(i, 9) = "=" & k & "份出口氨氮日报!N" & i
+        Next i
+        Cells(D + 6, 2) = "=污泥统计表!C" & 4 + D
+        Cells(D + 6, 3) = "=污泥统计表!D" & 4 + D
+        Cells(D + 6, 5) = sum1 '"=污水处理厂污水处理流量统计表!B33"
+        Cells(D + 5, 6) = b(1)
+        Cells(D + 5, 7) = b(3)
+        Cells(D + 5, 8) = b(2)
+        Cells(D + 5, 9) = b(4)
+        Cells(D + 5, 5) = b(5)
+        Cells(D + 5, 2) = "=AVERAGE(污泥统计表!C4:C" & D + 3 & ")"
+        Cells(D + 5, 3) = "=AVERAGE(污泥统计表!D4:D" & D + 3 & ")"
+'第七个
+    Worksheets(7).Select
+    sum1 = 0
+    sum2 = 0
+    For i = 4 To D + 3
+        Cells(i, 1) = Format(DateAdd("d", i - 3 - Day(Date), Date), "yyyy年m月d日")
+        sum1 = sum1 + Cells(i, 3)
+        sum2 = sum2 + Cells(i, 4)
+    Next i
+    Cells(D + 4, 3) = sum1
+    Cells(D + 4, 4) = sum2
+'第八个
+Worksheets(8).Select
+    Cells(4, 1) = Month(Date)
+    Cells(4, 2) = b(5) '"=日常运行情况月报!D" & D + 5
+    Cells(4, 3) = D
+    Cells(4, 4) = "=日常运行情况月报!E" & D + 6
+    Cells(4, 5) = "=日常运行情况月报!F" & D + 5
+    Cells(4, 6) = "=日常运行情况月报!G" & D + 5
+    Cells(4, 7) = "=日常运行情况月报!H" & D + 5
+    Cells(4, 8) = "=日常运行情况月报!I" & D + 5
+    Cells(4, 9) = ""
+    Cells(4, 10) = "=I4/D4*0.0001"
+    Cells(4, 11) = "=污泥统计表!C" & D + 4
+    Cells(4, 12) = "=K4/D4"
+    Cells(4, 13) = "=污泥统计表!D" & D + 4
+    Cells(4, 14) = "=(E4-F4)*D4*0.01"
+    Cells(4, 15) = "=(G4-H4)*D4*0.01"
+    Call baocun
+End Sub
+Sub baocun()
+    Sheets(Array(1, 2, 3, 4, 5, 6, 7, 8)).Copy
+    ActiveWorkbook.SaveAs Filename:="E:\企业发布\5月\" & Format(Date, "yyyy-mm-dd") & ".xls ", FileFormat:=56
+End Sub
+
