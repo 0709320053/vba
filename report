@@ -1,4 +1,5 @@
-﻿Option Explicit
+﻿'注释
+Option Explicit
 Public k As String, i, j, s, D As Integer
 Dim a(1 To 50), b(1 To 10), sum1, sum2, sum3
 Sub aver()
