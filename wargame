@@ -1,0 +1,95 @@
+得到下一关的密码直接ssh bandit?@localhost 不用加 -p
+The password is stored in /etc/bandit_pass
+
+ssh bandit25@bandit.labs.overthewire.org -p 2220
+bandit 1 readme
+boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+bandit 2
+CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+bandit 3
+UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+bandit 4
+pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+bandit 5
+koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+bandit 6
+DXjZPULLxYr17uwoI01bNLQbtFemEgo7(find / -user bandit7 -group bandit6 -size 33c 2>/dev/null)
+bandit 7
+HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+bandit8
+cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+bandit9
+UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR(strings data.txt | grep '^[=*]')
+bandit10(base64 -d data.txt)
+truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+bandit11<cat data.txt| tr '[a-m][n-z]' '[n-z][a-m]'|tr '[A-M][N-Z]' '[N-Z][A-M]'>单引号可有可无
+IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+bandit12<cat data.txt| tr '[a-m][n-z]' '[n-z][a-m]'|tr '[A-M][N-Z]' '[N-Z][A-M]'>
+5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+bandit13
+8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+bandit14
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+bandit15（这一关要运用nc命令打开端口向端口传文件，然后端口会返回密码）
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+bandit16（openssl s_client -connect 192.168.101.80:30001; cat /etc/bandit_pass/bandit15）
+cluFn7wTiGryunymYOu4RcffSxQluehd
+bandit17
+xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
+bandit18
+kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+bandit19
+IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+bandit20（./bandit20-do cat /etc/bandit_pass/bandit20）
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+bandit21（ nc -l -p 10000 </etc/bandit_pass/bandit20&）
+gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+bandit22
+Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+bandit23
+jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+(该关卡利用目标脚本的功能，写一个读取bandit24的密码script丢到/var/spool/bandit24即可)
+mkdir /tmp/31/
+s script (cat /etc/bandit_pass/bandit24 > /tmp/num)
+chmod 777 /tmp/31/s
+cp /tmp/31/s /var/spool/bandit24;cat /tmp/num
+jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+bandit24（脚本生成密码本，直接丢到nc就可以了）
+UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+bandit25(ssh -i bandit26.sshkey bandit26@localhost)
+uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+bandit26(该关不需要取得密码，利用more v :set shell=/bin/bash 取得shell，)
+bandit27(在26关基础上./bandit27-do cat /etc/bandit_pass/bandit27 <setuid>)
+3ba3118a22e93127a4ed485be72ef5ea
+bandit28(cd /tmp;git clone ssh://..)
+0ef186ac70e04ea33b4c1853d2526fa2
+bandit29(利用git 回退功能)
+bbc96594b4e001778eee9975372716b2
+bandit30(checkout branch)
+5b90576bedb2cc04c86a9e924ce42faf
+bandit31
+47e603bb428404d265f59c42920d81e5
+bandit32
+56a9bf19c63d650ce78e6ec0354ee45e
+bandit33
+c9c3199ddf4121b10cf581a98d51caee
+
+-----------------------------------------------
+
+NATAS
+/etc/natas_webpass/
+natas1
+natas10
+nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
+natas11
+U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
+
+-----------------------------------------------
+
+KRYPTON
+
+Krypton1
+Krypton2
+ROTTE
+Krypton3
+CAESARISEASY
