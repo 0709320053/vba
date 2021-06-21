@@ -77,9 +77,29 @@ c9c3199ddf4121b10cf581a98d51caee
 -----------------------------------------------
 
 NATAS
+http://natas11.natas.labs.overthewire.org
 /etc/natas_webpass/
-natas1
-natas10
+tas0（查看返回的源代码，密码被标签<!-- -->注释掉了）
+gtVrDuiDfck831PqWsLEZy5gyDz1clto
+natas1(右键不能直接查看代码，f12进入开发环境，doc-->response )
+ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi
+natas2
+ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi
+natas3
+sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14
+natas4
+Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ
+natas5(curl -H "referer:http://natas5.natas.labs.overthewire.org/" -u natas4 natas4.natas.labs.overthewire.org)
+iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq
+natas6(curl -b "loggedin=1" -u natas5 natas5.natas.labs.overthewire.org)
+aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1
+natas7
+7z3hEENjQtflzgnT29q7wAvMNfZdh0i9
+natas8(查看源码)
+DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe
+natas9(用php代码反向编码，由于运行php命令需要php环境，方便的方法是在线php工具，网上有很多)
+W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
+natas10()
 nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
 natas11
 U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
