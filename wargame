@@ -103,7 +103,29 @@ natas10()
 nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
 natas11
 U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
+declare -i x y1 y2 y3
 
+d=`mktemp -d`
+
+echo $d
+
+ 
+
+awk '{ for(x=1;x<=NF;x=x+1)print $x }' /krypton/krypton3/found1 >> $d"/found1"
+
+awk '{ for(x=1;x<=NF;x=x+1)print $x }' /krypton/krypton3/found2 >> $d"/found2"
+
+awk '{ for(x=1;x<=NF;x=x+1)print $x }' /krypton/krypton3/found3 >> $d"/found3"
+
+ 
+
+sort $d"/found1" | uniq -c |sort > $d"/found11"
+
+sort $d"/found2" | uniq -c |sort > $d"/found12"
+
+sort $d"/found3" | uniq -c |sort > $d"/found13"
+
+exit 0
 -----------------------------------------------
 
 KRYPTON
