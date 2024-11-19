@@ -1,0 +1,16 @@
+SCADA系统
+书 googlehacking for penl/tetration testers
+MLA （美国现代语言协会制定的论文指导格式） 
+the little .brown handbook 李特-布朗英文写作手册
+一 分区
+二makeswap sda3
+三swapon sda3
+pacstrap /mnt bse grub dialog wpa_actiond
+genfstab -U /mnt
+genfstab-U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+grub-mkconfig -o /boot/grub/grub.cfg
+grub-install /dev/sda
+
+http://mirrors.163.com/archlinux/$repo/os/$arch
+http://mirrors.gnomus.de/$repo/os/$arch
