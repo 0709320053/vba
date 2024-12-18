@@ -1,35 +1,80 @@
+## 密码
+> Bandit主机和端口 bandit.labs.overthewire.org:2220
+Bandit 用户名:Bandit+数字
+第0关帐密都是bandit0
+本关得到下一关密码,也就是说本关密码是在上一关找到的
+
 得到下一关的密码直接ssh bandit?@localhost 不用加 -p
 The password is stored in /etc/bandit_pass
 
 ssh bandit25@bandit.labs.overthewire.org -p 2220
-bandit 1 readme
-boJ9jbbUNNfktd78OOpsqOltutMc3MY1
-bandit 2
-CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
-bandit 3
-UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
-bandit 4
-pIwrPrtPN36QITSp3EQaw936yaFoFgAB
-bandit 5
-koReBOKuIDDepwhWk7jZC0RTdopnAYKh
-bandit 6
-DXjZPULLxYr17uwoI01bNLQbtFemEgo7(find / -user bandit7 -group bandit6 -size 33c 2>/dev/null)
-bandit 7
-HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
-bandit8
-cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+- 第零关 bandit0/bandit0
+```text
+ssh bandit0@bandit.labs.overthewire.org -p 2220 # 考查ssh连接命令`
+ls;cat readme # 侦察基础
+```
+- 第一关 bandit1/ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+```text
+cat ./- # 文件名是特殊字符
+```
+- 第二关 bandit2/263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+```text
+cat spaces\ in\ this\ filename # 文件名有space
+```
+- 第三关 bandit3/MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+```text
+cat ...Hiding-From-You # 隐藏文件
+```
+- 第四关 bandit4/2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+```text
+file ./* # file 查看文件属性
+cat ./-file07
+```
+- 第五关 bandit5/4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+```text
+find ./ -size 1033c # -size 1033c 
+```
+- 第六关 bandit6/HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+```text
+find / -size 33c -group bandit6 2> /dev/null # -group
+cat /var/lib/dpkg/info/bandit7.password
+```
+- 第七关 bandit7/morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+```text
+grep  'millionth' data.txt # grep
+```
+- 第八关 bandit8/dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+```text
+sort data.txt | uniq -u # 先排序在uniq -u
+```
+- 第九关 bandit9/4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+```text
+strings data.txt # strings
+```
+- 第十关 bandit10/FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+```text
+base64 -d data.txt # base64解码
+```
+- 第十一关 bandit11/dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+```text
+cat data.txt| tr '[a-m][n-z]' '[n-z][a-m]'|tr '[A-M][N-Z]' '[N-Z][A-M]' # tr 单引号可有可无
+````
+- 第十二关 bandit12/7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed 这句话有水平！
+```text
+file # file 能看到文件是被何种压缩,另外也可xxd头部判断
+tar xvf # 解压
+bzip2 -d # 解压
+gzip -d # 解压
+```
+- 第十三关 bandit13/FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+```text
+ssh bandit14@localhost -i sshkey.private -p 2221 cat /etc/bandit_pass/bandit14 # ssh -i 参数 -p 2220 一定要加
+```
+- 第十四关 bandit14/MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+```text
 bandit9
 UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR(strings data.txt | grep '^[=*]')
-bandit10(base64 -d data.txt)
-truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
-bandit11<cat data.txt| tr '[a-m][n-z]' '[n-z][a-m]'|tr '[A-M][N-Z]' '[N-Z][A-M]'>单引号可有可无
-IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
-bandit12<cat data.txt| tr '[a-m][n-z]' '[n-z][a-m]'|tr '[A-M][N-Z]' '[N-Z][A-M]'>
-5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
-bandit13
-8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
-bandit14
-4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
 bandit15（这一关要运用nc命令打开端口向端口传文件，然后端口会返回密码）
 BfMYroe26WYalil77FoDi9qh59eK5xNr
 bandit16（openssl s_client -connect 192.168.101.80:30001; cat /etc/bandit_pass/bandit15）
