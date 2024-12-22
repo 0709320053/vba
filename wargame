@@ -69,11 +69,79 @@ gzip -d # 解压
 ```
 - 第十三关 bandit13/FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
 ```text
-ssh bandit14@localhost -i sshkey.private -p 2221 cat /etc/bandit_pass/bandit14 # ssh -i 参数 -p 2220 一定要加
+ssh bandit14@localhost -i sshkey.private -p 2221 cat /etc/bandit_pass/bandit14 # ssh -i 参数 -p 2220 一定要加.后面接命令以空格分开。
+nc localhost 30000 # nc 使用
 ```
 - 第十四关 bandit14/MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
 ```text
+这一关密码是用来做跳板用，本关不能登陆
+```
+- 第十五关 bandit15/8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+```text
+openssl s_client -connect localhost:30001 # another way to nc,使用加密方法连接端口
+```
+- 第十六关 bandit16/kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+```text
+nmap localhost -p 31000-32000 or
+namp -sV -T4 -p 31000-32000 localhost
+openssl s_client -quiet -connect localhost:31790 # quiet必须加,openssl 只支持短-，没不--
+mktemp -d;touch file;chmod 600 file # 一定要chmod，否则连不上.
+ssh -i /tmp/tmp.10Jx4dKkJT/key bandit17@localhost -p 2220 cat /etc/bandit_pass/bandit17
+```
+- 第十七关 badnit17/EReVavePLFHtFlFsjn3hyzMlvSuSAcRD
+```text
+diff passwords.old passwords.new
+```
+- 第十八关 bandit18/x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+```text
+ssh bandit18@bandit.labs.overthewire.org -p 2220 cat /home/bandit18/readme
+```
+- 第十九关 bandit19/cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
+```text
+./bandit20-do cat /etc/bandit_pass/bandit20
+```
+- 第二十关 badnit20/0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+```text
+nc -l 1324 < /etc/bandit_pass/bandit20& # nc -l listen on port as server use
+./suconnect 1324
+- 第二十一关 bandit21/EeoULMCra2q0dSkYj561DX7s1CpBuOBt
+```text
+ls /etc/cron.d
+cat /etc/cron.d/cronjob_bandit22
+cat /usr/bin/cronjob_bandit22.sh
+cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+```
+- 第二十二关 bandit22/tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+```text
+ls /etc/cron.d
+cat /etc/cron.d/cronjob_bandit23
+cat /usr/bin/cronjob_bandit23.sh
+echo I am user bandit23 | md5sum | cut -d ' ' -f 1
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+```
+- 第二十三关 badnit23/0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+```text
+cat /etc/cron.d/cronjob_bandit24
+cat /usr/bin/cronjob_bandit24.sh
+mktemp -d
+vim /var/spool/bandit24/foo/test
+```
+- Script
+```sh
+#!/bin/bash
+cat /etc/bandit_pass/bandit24 > /temp/tmp.R1kG8QBlfr/passwordbandit24
+exit 0
+```
+```test
+chmod 777 /var/spool/bandit24/foo/test
+cat /temp/tmp.R1kG8QBlfr/passwordbandit24
+```
+- 第二十四关 badnit24/0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+```text
+```
+```
 bandit9
+
 UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR(strings data.txt | grep '^[=*]')
 bandit15（这一关要运用nc命令打开端口向端口传文件，然后端口会返回密码）
 BfMYroe26WYalil77FoDi9qh59eK5xNr
