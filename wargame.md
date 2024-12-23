@@ -3,63 +3,60 @@
 Bandit 用户名:Bandit+数字
 第0关帐密都是bandit0
 本关得到下一关密码,也就是说本关密码是在上一关找到的
-
-得到下一关的密码直接ssh bandit?@localhost 不用加 -p
 The password is stored in /etc/bandit_pass
 
-ssh bandit25@bandit.labs.overthewire.org -p 2220
-- 第零关 bandit0/bandit0
+### 第零关 bandit0/bandit0
 ```text
 ssh bandit0@bandit.labs.overthewire.org -p 2220 # 考查ssh连接命令`
 ls;cat readme # 侦察基础
 ```
-- 第一关 bandit1/ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+### 第一关 bandit1/ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
 ```text
 cat ./- # 文件名是特殊字符
 ```
-- 第二关 bandit2/263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+### 第二关 bandit2/263JGJPfgU6LtdEvgfWU1XP5yac29mFx
 ```text
 cat spaces\ in\ this\ filename # 文件名有space
 ```
-- 第三关 bandit3/MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+### 第三关 bandit3/MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 ```text
 cat ...Hiding-From-You # 隐藏文件
 ```
-- 第四关 bandit4/2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+### 第四关 bandit4/2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
 ```text
 file ./* # file 查看文件属性
 cat ./-file07
 ```
-- 第五关 bandit5/4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+### 第五关 bandit5/4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 ```text
 find ./ -size 1033c # -size 1033c 
 ```
-- 第六关 bandit6/HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+### 第六关 bandit6/HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
 ```text
 find / -size 33c -group bandit6 2> /dev/null # -group
 cat /var/lib/dpkg/info/bandit7.password
 ```
-- 第七关 bandit7/morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+### 第七关 bandit7/morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 ```text
 grep  'millionth' data.txt # grep
 ```
-- 第八关 bandit8/dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+### 第八关 bandit8/dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 ```text
 sort data.txt | uniq -u # 先排序在uniq -u
 ```
-- 第九关 bandit9/4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+### 第九关 bandit9/4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 ```text
 strings data.txt # strings
 ```
-- 第十关 bandit10/FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+### 第十关 bandit10/FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 ```text
 base64 -d data.txt # base64解码
 ```
-- 第十一关 bandit11/dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+### 第十一关 bandit11/dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 ```text
 cat data.txt| tr '[a-m][n-z]' '[n-z][a-m]'|tr '[A-M][N-Z]' '[N-Z][A-M]' # tr 单引号可有可无
-````
-- 第十二关 bandit12/7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+```
+### 第十二关 bandit12/7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
 The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed 这句话有水平！
 ```text
 file # file 能看到文件是被何种压缩,另外也可xxd头部判断
@@ -67,20 +64,20 @@ tar xvf # 解压
 bzip2 -d # 解压
 gzip -d # 解压
 ```
-- 第十三关 bandit13/FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+### 第十三关 bandit13/FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
 ```text
 ssh bandit14@localhost -i sshkey.private -p 2221 cat /etc/bandit_pass/bandit14 # ssh -i 参数 -p 2220 一定要加.后面接命令以空格分开。
 nc localhost 30000 # nc 使用
 ```
-- 第十四关 bandit14/MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+### 第十四关 bandit14/MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
 ```text
 这一关密码是用来做跳板用，本关不能登陆
 ```
-- 第十五关 bandit15/8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+### 第十五关 bandit15/8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
 ```text
 openssl s_client -connect localhost:30001 # another way to nc,使用加密方法连接端口
 ```
-- 第十六关 bandit16/kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+### 第十六关 bandit16/kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
 ```text
 nmap localhost -p 31000-32000 or
 namp -sV -T4 -p 31000-32000 localhost
@@ -88,30 +85,31 @@ openssl s_client -quiet -connect localhost:31790 # quiet必须加,openssl 只支
 mktemp -d;touch file;chmod 600 file # 一定要chmod，否则连不上.
 ssh -i /tmp/tmp.10Jx4dKkJT/key bandit17@localhost -p 2220 cat /etc/bandit_pass/bandit17
 ```
-- 第十七关 badnit17/EReVavePLFHtFlFsjn3hyzMlvSuSAcRD
+### 第十七关 badnit17/EReVavePLFHtFlFsjn3hyzMlvSuSAcRD
 ```text
 diff passwords.old passwords.new
 ```
-- 第十八关 bandit18/x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+### 第十八关 bandit18/x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
 ```text
 ssh bandit18@bandit.labs.overthewire.org -p 2220 cat /home/bandit18/readme
 ```
-- 第十九关 bandit19/cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
+### 第十九关 bandit19/cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
 ```text
 ./bandit20-do cat /etc/bandit_pass/bandit20
 ```
-- 第二十关 badnit20/0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+### 第二十关 badnit20/0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
 ```text
 nc -l 1324 < /etc/bandit_pass/bandit20& # nc -l listen on port as server use
 ./suconnect 1324
-- 第二十一关 bandit21/EeoULMCra2q0dSkYj561DX7s1CpBuOBt
+```
+### 第二十一关 bandit21/EeoULMCra2q0dSkYj561DX7s1CpBuOBt
 ```text
 ls /etc/cron.d
 cat /etc/cron.d/cronjob_bandit22
 cat /usr/bin/cronjob_bandit22.sh
 cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
 ```
-- 第二十二关 bandit22/tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+### 第二十二关 bandit22/tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
 ```text
 ls /etc/cron.d
 cat /etc/cron.d/cronjob_bandit23
@@ -119,7 +117,7 @@ cat /usr/bin/cronjob_bandit23.sh
 echo I am user bandit23 | md5sum | cut -d ' ' -f 1
 cat /tmp/8ca319486bfbbc3663ea0fbe81326349
 ```
-- 第二十三关 badnit23/0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+### 第二十三关 badnit23/0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
 ```text
 cat /etc/cron.d/cronjob_bandit24
 cat /usr/bin/cronjob_bandit24.sh
@@ -136,7 +134,7 @@ exit 0
 chmod 777 /var/spool/bandit24/foo/test
 cat /temp/tmp.R1kG8QBlfr/passwordbandit24
 ```
-- 第二十四关 badnit24/0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+### 第二十四关 badnit24/0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
 ```text
 ```
 ```
