@@ -1,4 +1,5 @@
-## 密码
+## Bandit
+The Bandit wargame is aimed at absolute beginners. It will teach the basics needed to be able to play other wargames.
 > Bandit主机和端口 bandit.labs.overthewire.org:2220
 Bandit 用户名:Bandit+数字
 第0关帐密都是bandit0
@@ -47,6 +48,7 @@ sort data.txt | uniq -u # 先排序在uniq -u
 ### 第九关 bandit9/4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 ```text
 strings data.txt # strings
+strings data.txt | grep '^[=*]'
 ```
 ### 第十关 bandit10/FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 ```text
@@ -127,67 +129,84 @@ vim /var/spool/bandit24/foo/test
 - Script
 ```sh
 #!/bin/bash
-cat /etc/bandit_pass/bandit24 > /temp/tmp.R1kG8QBlfr/passwordbandit24
+cat /etc/bandit_pass/bandit24 > /tmp/tmp.9nJpsgKa2t/passwordbandit24
 exit 0
 ```
 ```test
+chmod 777 /tmp/
 chmod 777 /var/spool/bandit24/foo/test
 cat /temp/tmp.R1kG8QBlfr/passwordbandit24
 ```
-### 第二十四关 badnit24/0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+### 第二十四关 badnit24/gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
 ```text
+mktemp -d # 创建写脚本的地方
+脚本生成密码本，直接丢到nc就可以了
 ```
+- 脚本
+```sh
+# 可以发现我并没有从0000-9999生成密码而是从1000-9999。因为老老实实地作脚本相对比较复杂,分析了一下1000-9999的数字占0000-9999的比率高，脚本也好写!
+#!/bin/bash
+declare -i x
+for ((x=1000;x<10000;x=x+1))
+do
+	echo "gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 $x" >> ./test
+done
+exit 0
 ```
-bandit9
-
-UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR(strings data.txt | grep '^[=*]')
-bandit15（这一关要运用nc命令打开端口向端口传文件，然后端口会返回密码）
-BfMYroe26WYalil77FoDi9qh59eK5xNr
-bandit16（openssl s_client -connect 192.168.101.80:30001; cat /etc/bandit_pass/bandit15）
-cluFn7wTiGryunymYOu4RcffSxQluehd
-bandit17
-xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
-bandit18
-kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
-bandit19
-IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
-bandit20（./bandit20-do cat /etc/bandit_pass/bandit20）
-GbKksEFF4yrVs6il55v6gwY5aVje5f0j
-bandit21（ nc -l -p 10000 </etc/bandit_pass/bandit20&）
-gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
-bandit22
-Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
-bandit23
-jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
-(该关卡利用目标脚本的功能，写一个读取bandit24的密码script丢到/var/spool/bandit24即可)
-mkdir /tmp/31/
-s script (cat /etc/bandit_pass/bandit24 > /tmp/num)
-chmod 777 /tmp/31/s
-cp /tmp/31/s /var/spool/bandit24;cat /tmp/num
-jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
-bandit24（脚本生成密码本，直接丢到nc就可以了）
-UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
-bandit25(ssh -i bandit26.sshkey bandit26@localhost)
-uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
-bandit26(该关不需要取得密码，利用more v :set shell=/bin/bash 取得shell，)
-bandit27(在26关基础上./bandit27-do cat /etc/bandit_pass/bandit27 <setuid>)
-3ba3118a22e93127a4ed485be72ef5ea
-bandit28(cd /tmp;git clone ssh://..)
-0ef186ac70e04ea33b4c1853d2526fa2
-bandit29(利用git 回退功能)
-bbc96594b4e001778eee9975372716b2
-bandit30(checkout branch)
-5b90576bedb2cc04c86a9e924ce42faf
-bandit31
-47e603bb428404d265f59c42920d81e5
-bandit32
-56a9bf19c63d650ce78e6ec0354ee45e
-bandit33
-c9c3199ddf4121b10cf581a98d51caee
-
+### 第二十五关 bandit25/iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
+```text
+more # more的罕见用法
+v
+:set shell=/bin/bash
+:shell
+```
+### 第二十六关 bandit26/s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ
+```text
+# 由于26关默认shell被替换,所以不能用密码登陆，要在25关登陆
+./bandit27-do cat /etc/bandit_pass/bandit27
+```
+### 第二十七关 bandit27/upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB
+```text
+git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo # 注意port
+```
+### 第二十八关 bandit28/Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN
+```text
+git clone ssh://bandit28-git@localhost:2220/home/bandit28-git/repo
+cat README.md
+git log # 考察git log
+git checkout 3621de89d8eac9d3b64302bfb2dc67e9a566decd # 考察git checkout
+cat README.md
+``` 
+### 第二十九关 bandit29/4pT1t5DENaYuqnqvadYs1oE4QLCdjmJ7
+```text
+git branch -a
+git checkout 
+git checkout remotes/origin/dev # 考察切换分支
+```
+### 第三十关 brandit30/qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
+```
+git tag # 考察tag
+git show secret
+```
+### 第三十一关 bandit31/fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy
+```text
+git add -f README.md # 考察如何提交
+git commit -m 'hello'
+git push
+```
+### 第三十二关 bandit32/3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K
+```text
+$0
+cd /bin
+bash 
+```
+### 第三十三关 bandit33/tQdtbs5D5i2vJwkO8mEyYEyTL8izoeJ0
+END
 -----------------------------------------------
 
-NATAS
+## NATAS
+Natas teaches the basics of serverside web-security.
+### 第一关 natas0/
 http://natas11.natas.labs.overthewire.org
 /etc/natas_webpass/
 tas0（查看返回的源代码，密码被标签<!-- -->注释掉了）
